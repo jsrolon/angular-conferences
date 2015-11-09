@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html ng-app="confencesApp">
+
+  <head>
+    <script data-require="angular.js@1.4.6" data-semver="1.4.6" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.6/angular.js"></script>
+    <script data-require="angular-route@*" data-semver="1.4.6" src="https://code.angularjs.org/1.4.6/angular-route.js"></script>
+    <script data-require="firebase@*" data-semver="2.2.9" src="https://cdn.firebase.com/js/client/2.2.9/firebase.js"></script>
+    <script data-require="angularfire@*" data-semver="1.1.1" src="//cdn.firebase.com/libs/angularfire/1.1.1/angularfire.js"></script>
+    
+    <link rel="stylesheet" href="style.css" />
+  
+    <script src="script.js"></script>
+    <script src="conferenceService.js"></script>
+    <script src="conferenceEditController.js"></script>
+    <script src="conferenceListController.js"></script>
+    <script src="userController.js"></script>
+    <script src="userService.js"></script>
+  
+  </head>
+  <body> 
+    
+    <h1>Conferencias</h1>
+    [ <a href="#/">Inicio</a> ] 
+    [ <a target="_blank" href="http://run.plnkr.co/plunks/YSVHqkxkrXPxNVcETF84/">Ver en ventana aparte</a> ]
+    <hr/>
+  
+    <div data-ng-view></div>
+    
+    <h1>Iniciar Sesi&oacute;n</h1>
+    <div ng-controller="userController">
+    <label for="email">Email:</label>
+    <input type="text" id="email"
+         ng-model="credentials.email">
+    <label for="password">Password:</label>
+    <input type="password" id="password" 
+         ng-model="credentials.password">
+    <button ng-click="login(credentials)">Login</button>
+    <button ng-click="createUser()">Registrarse</button>
+    </div>
+     
+  </body>
+</html>
