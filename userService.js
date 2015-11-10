@@ -1,11 +1,16 @@
 var app = angular.module("confencesApp")
   .factory( 'userService', 
     [ '$firebaseAuth',
-      function( $firebaseAuth) {
+      '$firebaseArray', 
+      function( $firebaseAuth, $firebaseArray ) {
     
     var service = { };
     
     service.ref = new Firebase( 'https://conferenciasjsrolon.firebaseio.com' );
+
+    service.favRef = new Firebase( 'https://conferenciasjsrolon.firebaseio.com/favorites' );
+
+    service.favoritesList = $firebaseArray(service.favRef);
     
     service.auth = $firebaseAuth( service.ref );
     
@@ -18,6 +23,21 @@ var app = angular.module("confencesApp")
       }).catch(function(error) {
         console.log(error);
       });
+    }
+
+    service.addFavorite = function(confId) {
+      if(service.auth.$getAuth() != null) {
+        var favoriteObj = service.favoritesList.$getRecord(service.auth.$getAuth().uid);
+        if(favoriteObj == null) {
+          var child = service.favRef.child(service.auth.$getAuth().uid);
+          child.set({
+            favorites: [confId]
+          });
+        } else {
+          favoriteObj.favorites.push(confId);
+          service.favoritesList.$save(favoriteObj);
+        }
+      }
     }
     
     service.createUser = function(email, password) {

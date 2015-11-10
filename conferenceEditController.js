@@ -13,11 +13,15 @@ var app = angular.module("confencesApp")
       googleMap.placeMarkers($scope.data);
     });
 
+    $scope.$watch('isFavorite', function()) {
+
+    }
+
     $scope.loadMap = function() {
       console.log("i am loading the map");
       console.log($scope.conference);
       if($scope.conference != null) {
-        console.log("I WILL GEOCODE");
+        console.log("I...WILL...GEOCODE!");
 
             // ejecuta geocode
           googleMap.getGeoCoder().geocode({
@@ -72,5 +76,10 @@ var app = angular.module("confencesApp")
       conferenceService.createOrUpdate( $scope.conference );
       $location.path("/list");
     };
+
+    $scope.addFavorite = function() {
+      console.log("agregar a favoritos " + $scope.conference.$id);
+      $scope.uservice.addFavorite($scope.conference.$id);
+    }
   }]);
   
