@@ -17,6 +17,16 @@ app.config( ['$routeProvider', function($routeProvider) {
     templateUrl : 'conferenceEditView.html',
     controller  : 'conferenceEditController'
     
+  // cuando es show
+  }).when( '/show', {
+    templateUrl : 'conferenceShowView.html',
+    controller  : 'conferenceEditController'
+    
+  // para la lista de favoritos del usuario
+  }).when( '/userList', {
+    templateUrl : 'conferenceUserListView.html',
+    controller  : 'conferenceUserListController'
+    
   // en caso contrario
   }).otherwise({
     redirectTo: '/list'

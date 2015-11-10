@@ -6,14 +6,25 @@ var app = angular.module("confencesApp")
     $scope.service = userService;
      
     $scope.login = function(credentials) {
-      $scope.service.login(credentials);
+      $scope.service.login(credentials);    
+    }
+
+    $scope.getInclude = function() {
+      if($scope.service.auth.$getAuth()) {
+        return 'loggedInPartial.html';
+      }
+      return 'loginForm.html';
     }
     
-    $scope.createUser = function() {
-      console.log($scope.credentials);
+    $scope.createUser = function(credentials) {
+      console.log(credentials);
       $scope.service.createUser(
-        $scope.credentials.email,
-        $scope.credentials.password);
+        credentials.email,
+        credentials.password);
+    }
+
+    $scope.unAuth = function() {
+      $scope.service.auth.$unauth();
     }
   }]);
   

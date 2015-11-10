@@ -1,0 +1,9 @@
+<h3>Iniciar Sesión</h3>
+    <label for="email">Email:</label>
+    <input type="text" id="email"
+         ng-model="credentials.email">
+    <label for="password">Password:</label>
+    <input type="password" id="password" 
+         ng-model="credentials.password">
+    <button ng-click="login(credentials)">Login</button>
+    <button ng-click="createUser(credentials)">Registrarse</button>

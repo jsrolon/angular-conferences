@@ -1,7 +1,7 @@
 var app = angular.module("confencesApp")
   .factory( 'conferenceService', 
-    [ '$firebaseArray',
-      function( $firebaseArray) {
+    [ '$firebaseArray', 'userService', 
+      function( $firebaseArray, userService) {
     
     var service = { };
     
@@ -10,7 +10,8 @@ var app = angular.module("confencesApp")
     service.conferences = $firebaseArray( service.ref );
     
     service.addConference = function ( conf ) {
-        service.conferences.$add( conf );
+      conf.owner = userService.auth.$getAuth().uid;
+      service.conferences.$add( conf );
     };
     
     service.newConference = function () {
@@ -21,11 +22,12 @@ var app = angular.module("confencesApp")
         place         : "",
         deadline      : "",
         notification  : "",
-        event         : ""
+        event         : "",
+        owner         : userService.auth.$getAuth().uid
       };
     }
       
-    service.currentConference = service.newConference();
+    //service.currentConference = service.newConference();
     
     service.setCurrentConference = function ( conf ) {
       service.currentConference = conf;

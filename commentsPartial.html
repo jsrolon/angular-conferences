@@ -1,0 +1,15 @@
+<h2>Comentarios</h2>
+
+  <div ng-if="uservice.auth.$getAuth() != null">
+    <h4>Agregar comentario</h4>
+    <textarea ng-model="comment"></textarea><br/>
+    <button ng-click="addComment(comment)">Add</button>
+  </div>
+
+  <ul>
+    <li ng-repeat="comment in comments">
+      <b>{{comment.owner}}</b></br>
+      {{comment.text}}
+      <button ng-if="comment.owner == uservice.auth.$getAuth().uid" ng-click="deleteComment($index)">Delete</button>
+    </li>
+  </ul>

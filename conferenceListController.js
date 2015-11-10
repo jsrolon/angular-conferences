@@ -1,12 +1,14 @@
 var app = angular.module("confencesApp")
   .controller( "conferenceListController", 
-    [ '$scope', '$location', 'conferenceService',
-      function($scope, $location, conferenceService) {
+    [ '$scope', '$location', 'conferenceService', 'userService',
+      function($scope, $location, conferenceService, userService) {
     
-    $scope.service = conferenceService;
+    $scope.cservice = conferenceService;
+
+    $scope.uservice = userService;
     
-    $scope.$watch( 'service.conferences', function(){
-      $scope.conferences = $scope.service.conferences;  
+    $scope.$watch( 'cservice.conferences', function(){
+      $scope.conferences = $scope.cservice.conferences;  
     });
     
     
@@ -19,5 +21,11 @@ var app = angular.module("confencesApp")
       conferenceService.setCurrentConference( conferenceService.newConference());
       $location.path('/edit');
     };
+
+    $scope.showConference = function(conf) {
+      conferenceService.setCurrentConference(conf);
+      $location.path('/show');
+    }
     
   }]);
+  

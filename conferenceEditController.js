@@ -1,13 +1,37 @@
 var app = angular.module("confencesApp")
   .controller( "conferenceEditController", 
-    [ '$scope', '$location', 'conferenceService',
-      function($scope, $location, conferenceService) {
+    [ '$scope', '$location', 'conferenceService', 'userService', 
+      function($scope, $location, conferenceService, userService) {
     
-    $scope.service = conferenceService;
+    $scope.cservice = conferenceService;
 
-    $scope.$watch( 'service.currentConference', function() {
-      $scope.conference = $scope.service.currentConference;
+    $scope.uservice = userService;
+
+    $scope.$watch( 'cservice.currentConference', function() {
+      $scope.conference = $scope.cservice.currentConference;
+      $scope.comments = $scope.conference.comments;
     });
+
+    $scope.$watch('cservice.currentConference.comments', function() {
+      $scope.comments = $scope.conference.comments;
+      console.log("comment list changed");
+    });
+
+    $scope.addComment = function(comment) {
+      if($scope.conference.comments == null) {
+        $scope.conference.comments = [];
+      }
+      $scope.conference.comments.push({
+        owner: $scope.uservice.auth.$getAuth().uid,
+        text: comment
+      });
+      $scope.cservice.createOrUpdate($scope.conference);
+    };
+
+    $scope.deleteComment = function(index) {
+      $scope.conference.comments.splice(index, 1);
+      $scope.cservice.createOrUpdate($scope.conference);
+    }
     
     $scope.createOrUpdate = function() {
       conferenceService.createOrUpdate( $scope.conference );
@@ -15,3 +39,4 @@ var app = angular.module("confencesApp")
     };
     
   }]);
+  

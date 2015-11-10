@@ -14,6 +14,7 @@ var app = angular.module("confencesApp")
       .then(function(authData) {
         console.log("Logged in succesfully");
         console.log(authData);
+        service.authData = authData;
       }).catch(function(error) {
         console.log(error);
       });
