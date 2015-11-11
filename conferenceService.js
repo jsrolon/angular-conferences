@@ -49,8 +49,11 @@ var app = angular.module("confencesApp")
 
     service.getUserFavs = function() {
       console.log("el uid es " + userService.auth.$getAuth().uid);
-      var favs = service.favoritesList.$getRecord(userService.auth.$getAuth().uid).favorites;
-      console.log(favs);
+      var favids = service.favoritesList.$getRecord(userService.auth.$getAuth().uid).favorites;
+      var favs = [];
+      favids.forEach(function(id) {
+        favs.push(service.conferences.$getRecord(id));
+      });
       return favs;
     }
     

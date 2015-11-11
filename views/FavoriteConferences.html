@@ -5,7 +5,7 @@
   
   <ul>
     <li ng-repeat="conference in userFavs">
-      {{conference}}
+      {{conference.id}} : {{conference.name}}
       <button ng-click="showConference(conference)">View</button>
       <div ng-if="conference.owner == uservice.auth.$getAuth().uid">
         <button ng-click="editConference(conference)">Edit</button>
