@@ -6,6 +6,8 @@ var app = angular.module("confencesApp")
     var service = { };
     
     service.ref = new Firebase( 'https://conferenciasjsrolon.firebaseio.com/conferences' );
+
+    service.favoritesList = $firebaseArray(new Firebase( 'https://conferenciasjsrolon.firebaseio.com/favorites' ));
     
     service.conferences = $firebaseArray( service.ref );
     
@@ -44,6 +46,13 @@ var app = angular.module("confencesApp")
     service.conferences.$watch( function(event) {
       console.log(event);
     });
+
+    service.getUserFavs = function() {
+      console.log("el uid es " + userService.auth.$getAuth().uid);
+      var favs = service.favoritesList.$getRecord(userService.auth.$getAuth().uid).favorites;
+      console.log(favs);
+      return favs;
+    }
     
     return service;
     

@@ -15,14 +15,7 @@ var app = angular.module("confencesApp")
     service.auth = $firebaseAuth( service.ref );
     
     service.login = function(credentials) {
-      service.auth.$authWithPassword(credentials)
-      .then(function(authData) {
-        console.log("Logged in succesfully");
-        console.log(authData);
-        service.authData = authData;
-      }).catch(function(error) {
-        console.log(error);
-      });
+      return service.auth.$authWithPassword(credentials);
     }
 
     service.addFavorite = function(confId) {

@@ -9,7 +9,7 @@
   notification : {{conference.notification}}<br/>
   event        : {{conference.event}}<br/>
 
-  Favorito: <input type="checkbox" ng-model="isFavorite">
+  <div ng-if="uservice.auth.$getAuth() != null">Favorito: <input type="checkbox" ng-model="isFavorite"></div>
 
   <div id="mapContainer" style="width: 400px;height:300px;" gmap="" data="data"></div>
 

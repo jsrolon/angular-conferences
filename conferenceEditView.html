@@ -10,6 +10,8 @@
   event        : <input type="text" ng-model="conference.event" /><br/>
   <button ng-click="createOrUpdate()">Save</button>
 
+  <div ng-if="uservice.auth.$getAuth() != null">Favorito: <input type="checkbox" ng-model="isFavorite"></div>
+
   <div id="mapContainer" style="width: 400px;height:300px;" gmap="" data="data"></div>
 
   <div ng-include="'commentsPartial.html'">

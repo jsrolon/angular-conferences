@@ -1,12 +1,16 @@
 var app = angular.module("confencesApp")
   .controller( "userController", 
-    [ '$scope', '$location', 'userService',
-      function($scope, $location, userService) {
+    [ '$scope', '$location', 'userService', '$location',
+      function($scope, $location, userService, $location) {
      
     $scope.service = userService;
      
     $scope.login = function(credentials) {
-      $scope.service.login(credentials);    
+      $scope.service.login(credentials).then(function(authData) {
+      $location.path('/favorites');
+      }).catch(function(error) {
+        console.log(error);
+      });    
     }
 
     $scope.getInclude = function() {
@@ -25,6 +29,7 @@ var app = angular.module("confencesApp")
 
     $scope.unAuth = function() {
       $scope.service.auth.$unauth();
+      $location.path('/list');
     }
   }]);
   

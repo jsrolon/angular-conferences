@@ -22,21 +22,22 @@
     <script src="conferenceEditController.js"></script>
     <script src="conferenceListController.js"></script>
     <script src="userController.js"></script>
+    <script src="controllers/FavoriteConferencesController.js"></script>
     <script src="userService.js"></script>
     <script src="google-maps.js"></script>
   
   </head>
   <body>
+  <nav class="navbar navbar-default" ng-controller="userController">
+    <div ng-include="getInclude()"></div>
+</nav>
 <div class="row">
-<div class="eight columns">
+<div class="col-md-12">
     <h1>Conferencias</h1>
     [ <a href="#/">Inicio</a> ] 
     <hr/>
   
     <div data-ng-view></div>
-</div>
-<div class="four columns" ng-controller="userController">
-    <div ng-include="getInclude()"></div>
 </div>
 </div>
   </body>

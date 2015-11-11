@@ -25,9 +25,9 @@ app.config( ['$routeProvider', function($routeProvider) {
     controller  : 'conferenceEditController'
     
   // para la lista de favoritos del usuario
-  }).when( '/userList', {
-    templateUrl : 'conferenceUserListView.html',
-    controller  : 'conferenceUserListController'
+  }).when( '/favorites', {
+    templateUrl : 'views/FavoriteConferences.html',
+    controller  : 'FavoriteConferencesController'
     
   // en caso contrario
   }).otherwise({

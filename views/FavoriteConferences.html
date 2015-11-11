@@ -1,0 +1,21 @@
+<div>
+  
+  Favorite Conferences
+  <hr/>
+  
+  <ul>
+    <li ng-repeat="conference in userFavs">
+      {{conference}}
+      <button ng-click="showConference(conference)">View</button>
+      <div ng-if="conference.owner == uservice.auth.$getAuth().uid">
+        <button ng-click="editConference(conference)">Edit</button>
+      </div>
+    </li>
+  </ul>
+  
+  <hr/>
+  <div ng-if="uservice.auth.$getAuth() != null">
+      <button ng-click="addConference()">Add</button>
+  </div>
+  
+</div>
