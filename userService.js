@@ -1,8 +1,8 @@
 var app = angular.module("confencesApp")
   .factory( 'userService', 
     [ '$firebaseAuth',
-      '$firebaseArray', 
-      function( $firebaseAuth, $firebaseArray ) {
+      '$firebaseArray', '$rootScope',
+      function( $firebaseAuth, $firebaseArray, $rootScope) {
     
     var service = { };
     
@@ -38,6 +38,32 @@ var app = angular.module("confencesApp")
           service.favoritesList.$save(favoriteObj);
         }
       }
+    }
+
+    service.removeFavorite = function(confId) {
+      if(service.auth.$getAuth() != null) {
+        var favoriteObj = service.favoritesList.$getRecord(service.auth.$getAuth().uid);
+        if(favoriteObj != null) {
+          favoriteObj.favorites = favoriteObj.favorites.filter(function(em) {
+            return em != confId;
+          });
+          service.favoritesList.$save(favoriteObj);
+        }
+      }
+    }
+
+    service.isFavorite = function(id) {
+      if(service.auth.$getAuth() != null) {
+        var favoriteObj = service.favoritesList.$getRecord(service.auth.$getAuth().uid);
+        if(favoriteObj == null) {
+          return false;
+        } else {
+          if($.inArray(id, favoriteObj.favorites) !== -1) {
+            return true;
+          }
+        }
+      }
+      return false;
     }
     
     service.createUser = function(email, password) {

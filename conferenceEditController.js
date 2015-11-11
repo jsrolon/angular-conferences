@@ -1,6 +1,10 @@
 var app = angular.module("confencesApp")
   .controller( "conferenceEditController", 
-    [ '$scope', '$location', 'conferenceService', 'userService', 'googleMaps', 
+    [ '$scope', 
+      '$location', 
+      'conferenceService', 
+      'userService', 
+      'googleMaps',
       function($scope, $location, conferenceService, userService, googleMap) {
     
     $scope.cservice = conferenceService;
@@ -12,10 +16,6 @@ var app = angular.module("confencesApp")
     $scope.$watch('data', function() {
       googleMap.placeMarkers($scope.data);
     });
-
-    $scope.$watch('isFavorite', function()) {
-
-    }
 
     $scope.loadMap = function() {
       console.log("i am loading the map");
@@ -48,6 +48,8 @@ var app = angular.module("confencesApp")
     $scope.$watch( 'cservice.currentConference', function() {
       $scope.conference = $scope.cservice.currentConference;
       $scope.comments = $scope.conference.comments;
+      $scope.isFavorite = $scope.uservice.isFavorite($scope.conference.$id);
+      console.log("es favorito " + $scope.isFavorite);
       $scope.loadMap();
     });
 
@@ -81,5 +83,23 @@ var app = angular.module("confencesApp")
       console.log("agregar a favoritos " + $scope.conference.$id);
       $scope.uservice.addFavorite($scope.conference.$id);
     }
+
+    $scope.removeFavorite = function() {
+      console.log("quitar de favoritos " + $scope.conference.$id);
+      $scope.uservice.removeFavorite($scope.conference.$id);
+    }
+
+    $scope.$watch('isFavorite', function() {
+      console.log("is favorite cambio a " + $scope.isFavorite);
+      if($scope.isFavorite) {
+        if(!$scope.uservice.isFavorite($scope.conference.$id)) {
+          $scope.addFavorite();
+        }
+      } else {
+        if($scope.uservice.isFavorite($scope.conference.$id)) {
+          $scope.removeFavorite();
+        }
+      }
+    });
   }]);
   
