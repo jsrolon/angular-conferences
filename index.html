@@ -25,20 +25,29 @@
     <script src="controllers/FavoriteConferencesController.js"></script>
     <script src="userService.js"></script>
     <script src="google-maps.js"></script>
+
+    <title>Conferences</title>
   
   </head>
   <body>
   <nav class="navbar navbar-default" ng-controller="userController">
-    <div ng-include="getInclude()"></div>
-</nav>
-<div class="row">
-<div class="col-md-12">
-    <h1>Conferencias</h1>
-    [ <a href="#/">Inicio</a> ] 
-    <hr/>
-  
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a href="#/" class="navbar-brand">ConferencesApp</a>
+      </div>
+      <div class="collapse navbar-collapse">
+        <div ng-include="getInclude()"></div>
+      </div>
+    </div>
+  </nav>
+  <div class="container-fluid">
+    <!-- los rows se definen dentro de cada partial -->
     <div data-ng-view></div>
-</div>
-</div>
+  </div>
+  <footer class="footer">
+      <div class="container">
+        <p class="text-muted">2015 - Juan Sebastián Rolón</p>
+      </div>
+  </footer>
   </body>
 </html>

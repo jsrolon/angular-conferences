@@ -5,7 +5,8 @@ var app = angular.module("confencesApp")
       'conferenceService', 
       'userService', 
       'googleMaps',
-      function($scope, $location, conferenceService, userService, googleMap) {
+      '$timeout',
+      function($scope, $location, conferenceService, userService, googleMap, $timeout) {
     
     $scope.cservice = conferenceService;
 
@@ -37,10 +38,10 @@ var app = angular.module("confencesApp")
           // usa $scope.$apply() debido a que esta función se ejecuta
           // en el alcance del servicio "google-maps". Al ejecutar 
           // $apply, el controlador es notificado de los cambios
-          $scope.$apply(function(){
+          $timeout(function(){
             // asigna el resultado a $scope.data
             $scope.data = results.slice(0,1);
-          });
+          }, 200);
         });
       }
     }
@@ -88,6 +89,20 @@ var app = angular.module("confencesApp")
       console.log("quitar de favoritos " + $scope.conference.$id);
       $scope.uservice.removeFavorite($scope.conference.$id);
     }
+
+    $scope.favoriteChanged = function() {
+      $scope.isFavorite = !$scope.isFavorite;
+      console.log("is favorite cambio a " + $scope.isFavorite);
+      if($scope.isFavorite) {
+        if(!$scope.uservice.isFavorite($scope.conference.$id)) {
+          $scope.addFavorite();
+        }
+      } else {
+        if($scope.uservice.isFavorite($scope.conference.$id)) {
+          $scope.removeFavorite();
+        }
+      }
+    };
 
     $scope.$watch('isFavorite', function() {
       console.log("is favorite cambio a " + $scope.isFavorite);

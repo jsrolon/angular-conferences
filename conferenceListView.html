@@ -1,21 +1,19 @@
-<div>
-  
-  Conferences
-  <hr/>
-  
-  <ul>
-    <li ng-repeat="conference in conferences">
-      {{conference.id}} : {{conference.name}}
-      <button ng-click="showConference(conference)">View</button>
+<div class="row">
+<div class="col-md-6">
+  <div class="panel panel-default" ng-repeat="conference in conferences">
+  <div class="panel-heading">
+    <h3 class="panel-title">{{conference.name}}</h3>
+  </div>
+  <div class="panel-body">
+    {{conference.description}}
+    <button ng-click="showConference(conference)">View</button>
       <div ng-if="conference.owner == uservice.auth.$getAuth().uid">
         <button ng-click="editConference(conference)">Edit</button>
       </div>
-    </li>
-  </ul>
-  
-  <hr/>
-  <div ng-if="uservice.auth.$getAuth() != null">
-      <button ng-click="addConference()">Add</button>
   </div>
-  
+  </div>
+  <div ng-if="uservice.auth.$getAuth() != null">
+    <button ng-click="addConference()">Add</button>
+  </div>
+</div>
 </div>
