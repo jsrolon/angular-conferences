@@ -1,8 +1,8 @@
 var app = angular.module("confencesApp", [
     'ngRoute',
     'firebase',
-    'ui.date',
-    'google-maps'
+    'google-maps',
+    'datePicker'
   ]);
 
 // configura las rutas

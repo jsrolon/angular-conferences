@@ -48,6 +48,11 @@ var app = angular.module("confencesApp")
 
     $scope.$watch( 'cservice.currentConference', function() {
       $scope.conference = $scope.cservice.currentConference;
+      // parsear el unix timestamp
+      $scope.conference.deadline = moment($scope.conference.deadline, "X");
+      $scope.conference.notification = moment($scope.conference.notification, "X");
+      $scope.conference.event = moment($scope.conference.event, "X");
+
       $scope.comments = $scope.conference.comments;
       $scope.isFavorite = $scope.uservice.isFavorite($scope.conference.$id);
       console.log("es favorito " + $scope.isFavorite);
@@ -76,6 +81,11 @@ var app = angular.module("confencesApp")
     }
     
     $scope.createOrUpdate = function() {
+      console.log("creating or updating");
+      $scope.conference.deadline = $scope.conference.deadline.format("X");
+      $scope.conference.notification = $scope.conference.notification.format("X");
+      $scope.conference.event = $scope.conference.event.format("X");
+      
       conferenceService.createOrUpdate( $scope.conference );
       $location.path("/list");
     };

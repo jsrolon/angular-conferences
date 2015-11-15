@@ -163,7 +163,7 @@ angular.module("google-maps")
           scope.$watch("data", function (newval) {
             if (scope.data.length > 0 ) {
               googleMap.placeMarkers( newval );
-              googleMap.zoomToMarker(0, 4);
+              googleMap.zoomToMarker(0, 1);
             }
           });
       }
