@@ -15,9 +15,9 @@ var app = angular.module("confencesApp")
 
     $scope.getInclude = function() {
       if($scope.service.auth.$getAuth()) {
-        return 'loggedInPartial.html';
+        return 'views/partials/loggedInPartial.html';
       }
-      return 'loginForm.html';
+      return 'views/partials/loginForm.html';
     }
     
     $scope.createUser = function(credentials) {

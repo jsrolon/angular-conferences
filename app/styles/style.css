@@ -1,6 +1,6 @@
 /* Styles go here */
 @import url('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css');
-@import url('angular-datepicker.min.css');
+@import url('../../bower_components/angular-datepicker/dist/angular-datepicker.min.css');
 
 /* Sticky footer styles
 -------------------------------------------------- */
