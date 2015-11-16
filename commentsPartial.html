@@ -1,11 +1,10 @@
 <h1>Comments</h1>
 
 <div ng-if="uservice.auth.$getAuth() != null">
-  <h4>Agregar comentario</h4>
-  <textarea ng-model="comment"></textarea><br/>
-  <button ng-click="addComment(comment)">Add</button>
+  <textarea class="form-control" ng-model="comment"></textarea><br/>
+  <button class="btn btn-default" ng-click="addComment(comment)">Comment</button>
 </div>
-
+<br/>
 <ul class="list-group">
   <li class="list-group-item" ng-repeat="comment in comments">
     <h4 class="list-group-item-heading">{{comment.owner}}</h4>

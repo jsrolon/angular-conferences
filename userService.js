@@ -45,6 +45,10 @@ var app = angular.module("confencesApp")
       }
     }
 
+    service.isLogged = function() {
+      return service.auth.$getAuth() != null;
+    }
+
     service.isFavorite = function(id) {
       if(service.auth.$getAuth() != null) {
         var favoriteObj = service.favoritesList.$getRecord(service.auth.$getAuth().uid);

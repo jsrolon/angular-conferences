@@ -1,18 +1,70 @@
-<div>
-  
-  Conference
-  <hr/>
-  name         : <input type="text" ng-model="conference.name" /><br/>  
-  description  : <textarea          ng-model="conference.description"></textarea><br/>  
-  place        : <input type="text" ng-model="conference.place" /><br/>  
-  deadline     : <input class="ng-pristine ng-valid ng-scope ng-touched" date-time="" ng-model="conference.deadline" view="date" min-view="date" max-view="date" format="DD MMM YYYY" type="text"></input><br/>
-  notification : <input class="ng-pristine ng-valid ng-scope ng-touched" date-time="" ng-model="conference.notification" view="date" min-view="date" max-view="date" format="DD MMM YYYY" type="text"></input><br/>
-  event        : <input class="ng-pristine ng-valid ng-scope ng-touched" date-time="" ng-model="conference.event" view="date" min-view="date" max-view="date" format="DD MMM YYYY" type="text"></input><br/>
-  <button ng-click="createOrUpdate()">Save</button>
-
-  <div ng-if="uservice.auth.$getAuth() != null">Favorito: <input type="checkbox" ng-model="isFavorite"></input></div>
-
-  <div id="mapContainer" style="width: 400px;height:300px;" gmap="" data="data"></div>
-
-  <div ng-include="'commentsPartial.html'">
+<div class="row">
+    <div class="col-md-12">
+        <h1><input type="text" ng-model="conference.name"/> <small>in <input type="text" ng-model="conference.place"/></small></h1>
+    </div>
 </div>
+<div class="row">
+  <div class="col-md-4">
+      <div id="mapContainer" style="width: 100%;height:300px;" gmap="" data="data"></div>
+  </div>
+  <div class="col-md-8"> 
+    <div class="row">
+      <div class="col-md-4">
+        <div class="panel panel-warning">
+          <div class="panel-heading">
+            <h3 class="panel-title">Deadline</h3>
+          </div>
+          <div class="panel-body">
+            <input class="ng-pristine ng-valid ng-scope ng-touched" date-time="" ng-model="conference.deadline" view="date" min-view="date" max-view="date" format="DD MMM YYYY" type="text"></input>
+          </div>
+        </div>
+        </div>
+      <div class="col-md-4">
+        <div class="panel panel-success">
+          <div class="panel-heading">
+            <h3 class="panel-title">Notification</h3>
+          </div>
+          <div class="panel-body">
+            <input class="ng-pristine ng-valid ng-scope ng-touched" date-time="" ng-model="conference.notification" view="date" min-view="date" max-view="date" format="DD MMM YYYY" type="text"></input>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            <h3 class="panel-title">Event</h3>
+          </div>
+          <div class="panel-body">
+            <input class="ng-pristine ng-valid ng-scope ng-touched" date-time="" ng-model="conference.event" view="date" min-view="date" max-view="date" format="DD MMM YYYY" type="text"></input>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h3>Description</h3>
+            <p><textarea class="form-control" ng-model="conference.description"></textarea></p>
+        </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div ng-if="uservice.auth.$getAuth() != null">Favorito: <input type="checkbox" ng-change="favoriteChanged()" ng-model="isFavorite"></input></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <button class="btn btn-default" ng-click="createOrUpdate()">Save all changes</button>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+
+<hr/>
+
+<div class="row">
+    <div class="col-md-12">
+        <div ng-include="'commentsPartial.html'"></div>
+    </div>
+</div>
+

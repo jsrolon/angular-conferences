@@ -59,6 +59,10 @@ var app = angular.module("confencesApp")
       $scope.loadMap();
     });
 
+    $scope.showEdit = function() {
+      $location.path("/edit");
+    }
+
     $scope.$watch('cservice.currentConference.comments', function() {
       $scope.comments = $scope.conference.comments;
       console.log("comment list changed");
@@ -87,7 +91,7 @@ var app = angular.module("confencesApp")
       $scope.conference.event = $scope.conference.event.format("X");
       
       conferenceService.createOrUpdate( $scope.conference );
-      $location.path("/list");
+      $location.path("/show");
     };
 
     $scope.addFavorite = function() {

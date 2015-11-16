@@ -28,7 +28,7 @@ var app = angular.module("confencesApp")
         $timeout(function(){
           // asigna el resultado a $scope.data
           $scope.data = positions;
-        }, 200);
+        }, 300);
       }
     }
 
