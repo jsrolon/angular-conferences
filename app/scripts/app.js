@@ -11,22 +11,22 @@ app.config( ['$routeProvider', function($routeProvider) {
   // cuando es /list
   $routeProvider
   .when( '/list', {
-    templateUrl : 'views/conferenceListView.html',
+    templateUrl : 'views/ConferenceList.view.html',
     controller  : 'conferenceListController'
 
   // cuando es /edit
   }).when( '/edit', {
-    templateUrl : 'views/conferenceEditView.html',
+    templateUrl : 'views/ConferenceEdit.view.html',
     controller  : 'conferenceEditController'
     
   // cuando es show
   }).when( '/show', {
-    templateUrl : 'views/conferenceShowView.html',
+    templateUrl : 'views/ConferenceShow.view.html',
     controller  : 'conferenceEditController'
     
   // para la lista de favoritos del usuario
   }).when( '/favorites', {
-    templateUrl : 'views/FavoriteConferences.html',
+    templateUrl : 'views/FavoriteConferences.view.html',
     controller  : 'FavoriteConferencesController'
     
   // en caso contrario
