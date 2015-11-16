@@ -18,6 +18,13 @@ var app = angular.module("confencesApp")
       return service.auth.$authWithPassword(credentials);
     }
 
+    service.getUID = function() {
+      if(service.isLogged()) {
+        return service.auth.$getAuth().uid;
+      }
+      return "";
+    }
+
     service.addFavorite = function(confId) {
       if(service.auth.$getAuth() != null) {
         var favoriteObj = service.favoritesList.$getRecord(service.auth.$getAuth().uid);
